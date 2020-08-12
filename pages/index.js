@@ -46,9 +46,9 @@ const Card = styled(motion.div)`
   background: #fff;
   border-radius: 6px;
   box-shadow: 0 30px 60px hsla(100,30%, 35%, 0.4);
-  width: 70vmin;
-  height: 90vmin;
-  max-height: 80vh;
+  width: calc(70vmin * 0.75);
+  height: 70vmin;
+  max-height: 70vh;
   max-width: 80vw;
 `
 
@@ -95,7 +95,7 @@ export default function Home() {
   const [Content, setContent] = useState('')
   const [MaxNumber, setMaxNumber] = useState(20)
   const [CardState, setCardState] = useState('front')
-  const [ActiveDictionary, setActiveDictionary] = useState('Clocks')
+  const [ActiveDictionary, setActiveDictionary] = useState(Letters)
   const [ClockHands, setClockHands] = useState([0,0])
 
   const Marks = {
