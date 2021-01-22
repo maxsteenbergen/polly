@@ -17,7 +17,8 @@ export const Container = styled('main')`
     height: 100%;
     width: 96px;
     background: #fff;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: 24px;
     align-items: center;
     z-index: 4;
     & > * {
@@ -51,17 +52,13 @@ export const Container = styled('main')`
   }
   & > .menuToggle {
     position: absolute;
-    bottom: 64px;
-    left: 0;
-    z-index: 1;
+    bottom: 0px;
+    left: 12px;
+    z-index: 4;
     width: 64px;
     height: 64px;
-    @media(min-width: 768px){
-      display: none;
-    }
-    &:first-of-type{
-      z-index: 3;
-      bottom: 0px;
+    &.offset{
+      bottom: 64px;
     }
   }
   
@@ -75,12 +72,14 @@ export const Container = styled('main')`
     display: flex; 
     flex-direction: column;
     justify-content: center;
-    left: 160px;
     padding: 10vh 0;
-    @media(max-width: 768px){
-      background: hsla(0,0%,100%,0.9);
       padding-left: 25vw;
       left: 0;
+    background: hsla(0,0%,100%,0.9);
+    & h1 {
+      font-size: 20px;
+    }
+    @media(max-width: 768px){
     }
   }
 `

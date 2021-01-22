@@ -29,16 +29,16 @@ export default function Home() {
   const [ClockHands, setClockHands] = useState([0,0])
   const [TafelSom, setTafelSom] = useState([0,0])
   const [ActiveTafels, setActiveTafels] = useState([1])
-  const [SettingsOpen, setSettingsOpen] = useState(true)
+  const [SettingsOpen, setSettingsOpen] = useState(false)
   const [MenuOpen, setMenuOpen] = useState(true)
   const [IsMobile, setIsMobile] = useState(true)
 
-  useEffect(()=>{
-    window.addEventListener(('resize'), ()=>{
-      setIsMobile(window.innerWidth < 768)
-    })
-    setIsMobile(window.innerWidth < 768)
-  },[])
+  // useEffect(()=>{
+  //   window.addEventListener(('resize'), ()=>{
+  //     setIsMobile(window.innerWidth < 768)
+  //   })
+  //   setIsMobile(window.innerWidth < 768)
+  // },[])
 
 
   const Marks = {
@@ -127,9 +127,9 @@ export default function Home() {
   //   }
   // },[ActiveDictionary])
 
-  useEffect(()=>{
-    if(SettingsOpen && IsMobile) setMenuOpen(false)
-  }, [SettingsOpen])
+  // useEffect(()=>{
+  //   if(SettingsOpen && IsMobile) setMenuOpen(false)
+  // }, [SettingsOpen])
 
 
   //--------------------------------------------------------------------------------------------------------------------
@@ -245,10 +245,12 @@ export default function Home() {
         </div>
       </motion.menu>
 
-      <List className={'menuToggle'} onClick={()=>{setMenuOpen(!MenuOpen)}}/>
+      {!SettingsOpen &&
+        <List className={'menuToggle'} onClick={()=>{setMenuOpen(!MenuOpen)}}/>
+      }
       {
-        (ActiveDictionary === "Samenvoegen" || ActiveDictionary === "Tafels" || ActiveDictionary === "Numbers") &&
-        <GearSix className={'menuToggle'}  onClick={()=>{setSettingsOpen(!SettingsOpen)}}/>
+        (ActiveDictionary === "Samenvoegen" || ActiveDictionary === "Tafels" || ActiveDictionary === "Numbers") && !MenuOpen &&
+        <GearSix className={'menuToggle offset'}  onClick={()=>{setSettingsOpen(!SettingsOpen)}}/>
       }
 
     </Container>
