@@ -31,7 +31,7 @@ export default function Home() {
   const [ActiveTafels, setActiveTafels] = useState([1])
   const [SettingsOpen, setSettingsOpen] = useState(false)
   const [MenuOpen, setMenuOpen] = useState(true)
-  const [IsMobile, setIsMobile] = useState(true)
+  const [IsMobile] = useState(true)
 
   // useEffect(()=>{
   //   window.addEventListener(('resize'), ()=>{
@@ -149,25 +149,21 @@ export default function Home() {
         <link rel="manifest" href="/manifest.json"/>
         <link href='/favicon-16x16.png' rel='icon' type='image/png' sizes='16x16'/>
         <link href='/favicon-32x32.png' rel='icon' type='image/png' sizes='32x32'/>
-        <link rel="apple-touch-icon" href="/apple-icon.png"></link>
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
         <meta name="theme-color" content="#317EFB"/>
       </Head>
 
-      <Card onClick={changeCharacter} style={{originY: 1, position: 'absolute'}} variants={CardVariants} animate={CardState === 'front' ? 'back' : 'front'} initial={'visible'}>
-        { ActiveDictionary === 'Clocks' && <Clock hands={ClockHands} /> }
-        {/*{ ActiveDictionary === Pictograms &&  <AnimatePresence ><Pictogram src={Content} /> </AnimatePresence >}*/}
-        { (typeof ActiveDictionary === 'object' || ActiveDictionary === 'Numbers') && <ContentNode>{Content}</ContentNode>}
-        { ActiveDictionary === 'Tafels' && <ContentNode>{TafelSom[0]} <X style={{width: "8vmin", height: "8vmin"}} /> {TafelSom[1]}</ContentNode> }
-        { ActiveDictionary === 'Samenvoegen' && <ContentNode>{getSamenvoegenSom()}</ContentNode> }
-      </Card>
+      <Card onClick={changeCharacter} style={{originY: 1, position: 'absolute'}} variants={CardVariants} animate={CardState === 'front' ? 'back' : 'front'} initial={'visible'} />
 
-      <Card onClick={changeCharacter} style={{originY: 1}} variants={CardVariants} animate={CardState} initial={'hidden'}>
+      <Card onClick={changeCharacter} style={{originY: 1}} variants={CardVariants} animate={CardState} initial={'hidden'} />
+
+      <div style={{position: 'absolute', zIndex: 2}}>
         { ActiveDictionary === 'Clocks' && <Clock hands={ClockHands} /> }
         {/*{ ActiveDictionary === Pictograms &&  <AnimatePresence ><Pictogram src={Content} /> </AnimatePresence >}*/}
         { (typeof ActiveDictionary === 'object' || ActiveDictionary === 'Numbers') && <ContentNode>{Content}</ContentNode>}
         { ActiveDictionary === 'Tafels' &&  <ContentNode>{TafelSom[0]} <X style={{width: "8vmin", height: "8vmin"}} /> {TafelSom[1]}</ContentNode> }
         { ActiveDictionary === 'Samenvoegen' && <ContentNode>{getSamenvoegenSom()}</ContentNode> }
-      </Card>
+      </div>
 
       {(ActiveDictionary === 'Numbers' || ActiveDictionary === 'Tafels' || ActiveDictionary === 'Samenvoegen') &&
         <motion.div className={'modeSettings'} animate={IsMobile ? {x: SettingsOpen ? 0 : "-200%"} : {}}>
