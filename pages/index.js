@@ -118,7 +118,7 @@ export default function Home() {
 
   //--------------------------------------------------------------------------------------------------------------------
 
-  useEffect(changeCharacter,[ActiveDictionary, MaxNumber])
+  useEffect(changeCharacter, [ActiveDictionary, MaxNumber])
 
   // useEffect(()=>{
   //   if(MenuOpen && !IsMobile) {
